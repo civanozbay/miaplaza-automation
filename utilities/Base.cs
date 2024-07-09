@@ -14,20 +14,20 @@ namespace miaplaza_automation.utilities
         public Base()
         { }
 
-            [SetUp]
-            public void Setup()
-            {
+        [SetUp]
+        public void Setup()
+        {
                 string browserName = ConfigurationManager.AppSettings["browser"];
                 InitBrowser(browserName);
                 driver.Manage().Window.Maximize();
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-             
-            }
+                driver.Url = "https://miacademy.co/#/";
+
+        }
 
         [TearDown]
         public void closeBrowser()
         {
-            TestContext.Progress.WriteLine("setup method execution");
             driver.Quit();
         }
         public void InitBrowser(string browserName)
