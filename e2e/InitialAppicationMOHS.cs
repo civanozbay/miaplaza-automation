@@ -11,6 +11,7 @@ namespace miaplaza_automation.e2e
 		[Test]
 		public void test()
 		{
+			
 		}
 	}
 }

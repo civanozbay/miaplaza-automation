@@ -23,7 +23,14 @@ namespace miaplaza_automation.utilities
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
              
             }
-            public void InitBrowser(string browserName)
+
+        [TearDown]
+        public void closeBrowser()
+        {
+            TestContext.Progress.WriteLine("setup method execution");
+            driver.Quit();
+        }
+        public void InitBrowser(string browserName)
             {
                 switch (browserName)
                 {
@@ -45,13 +52,20 @@ namespace miaplaza_automation.utilities
             {
                 return driver;
             }
-            [TearDown]
-            public void closeBrowser()
-            {
-                TestContext.Progress.WriteLine("setup method execution");
-                driver.Quit();
-            }
-        
-	}
+
+
+        public void ScrollDown(int pixels)
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript($"window.scrollBy(0, {pixels});");
+        }
+
+        public void ScrollUp(int pixels)
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript($"window.scrollBy(0, -{pixels});");
+        }
+
+    }
 }
 
